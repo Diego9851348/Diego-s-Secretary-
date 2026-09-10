@@ -9,11 +9,12 @@
   },  
   "dependencies": {  
     "discord.js": "^14.18.0",  
-    "dotenv": "^16.4.7"  
+    "dotenv": "^16.4.7",  
+    "better-sqlite3": "^9.0.0"  
   },  
   "engines": {  
     "node": ">=18"  
   },  
-  "author": "Your Name",  
+  "author": "Diego Rothschild",  
   "license": "MIT"  
 }  
