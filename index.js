@@ -23,24 +23,3 @@ client.on(Events.MessageCreate, async (message) => {
 });
 
 client.login(process.env.DISCORD_TOKEN);  
-const { Client, GatewayIntentBits, Partials, EmbedBuilder, PermissionsBitField } = require('discord.js');  
-require('dotenv').config();
-
-const client = new Client({  
-    intents: [  
-        GatewayIntentBits.Guilds,  
-        GatewayIntentBits.GuildMessages,  
-        GatewayIntentBits.MessageContent,  
-        GatewayIntentBits.GuildMembers,  
-    ],  
-    partials: [Partials.Channel],  
-});
-
-client.on('ready', () => {  
-    console.log(`✅ Diego Personal Secretary is online and ready!`);  
-});
-
-// Basic greeting  
-client.on('messageCreate', (message) => {  
-    if (message.author.bot) return;  
-    if (message.content.to
