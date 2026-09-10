@@ -1,0 +1,19 @@
+{  
+  "name": "diego-personal-secretary",  
+  "version": "1.0.0",  
+  "description": "Diego Personal Secretary Bot",  
+  "main": "index.js",  
+  "scripts": {  
+    "start": "node index.js",  
+    "deploy:commands": "node deploy-commands.js"  
+  },  
+  "dependencies": {  
+    "discord.js": "^14.18.0",  
+    "dotenv": "^16.4.7"  
+  },  
+  "engines": {  
+    "node": ">=18"  
+  },  
+  "author": "Your Name",  
+  "license": "MIT"  
+}  
