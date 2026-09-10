@@ -2,21 +2,21 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const Database = require('better-sqlite3');  
 require('dotenv').config();
 
-const client = new Client({  
-    intents: [  
-        GatewayIntentBits.Guilds,  
-        GatewayIntentBits.GuildMessages,  
-        GatewayIntentBits.MessageContent  
-    ]  
+const client = new Client({   
+    intents: [   
+        GatewayIntentBits.Guilds,   
+        GatewayIntentBits.GuildMessages,   
+        GatewayIntentBits.MessageContent   
+    ]   
 });
 
 // --- DATABASE SETUP ---  
 // This creates the file diego_memory.db to store your secrets  
 const db = new Database('diego_memory.db');  
-db.prepare(`CREATE TABLE IF NOT EXISTS memories (  
-    userId TEXT,  
-    memory TEXT,  
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP  
+db.prepare(`CREATE TABLE IF NOT EXISTS memories (   
+    userId TEXT,   
+    memory TEXT,   
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP   
 )`).run();
 
 client.on('ready', () => {  
@@ -24,8 +24,7 @@ client.on('ready', () => {
 });
 
 client.on('messageCreate', async (message) => {  
-    if (message.author.bot) return;
-
+    if (message.author.bot) return;  
     const content = message.content.toLowerCase();
 
     // 1. CONVERSATION GREETING  
@@ -45,8 +44,7 @@ ${memories.map(m => `• ${m.memory}`).join('
     // 2. SAVING MEMORIES  
     if (content.startsWith('remember this:')) {  
         const memoryText = message.content.slice(16).trim();  
-        if (!memoryText) return message.reply("Remember what, Boss? Please tell me what to save!");
-
+        if (!memoryText) return message.reply("Remember what, Boss? Please tell me what to save!");  
         db.prepare('INSERT INTO memories (userId, memory) VALUES (?, ?)').run(message.author.id, memoryText);  
         return message.reply(`✅ Noted, Boss. I have filed "${memoryText}" in my records.`);  
     }
@@ -54,8 +52,7 @@ ${memories.map(m => `• ${m.memory}`).join('
     // 3. RECALLING MEMORIES  
     if (content === 'what do you remember about me?') {  
         const memories = db.prepare('SELECT memory FROM memories WHERE userId = ?').all(message.author.id);  
-        if (memories.length === 0) return message.reply("My files on you are currently empty, Boss. Tell me something to remember!");
-
+        if (memories.length === 0) return message.reply("My files on you are currently empty, Boss. Tell me something to remember!");  
         const list = memories.map((m, i) => `${i + 1}. ${m.memory}`).join('  
 ');  
         return message.reply(`📜 **My Records for ${message.author.username}:**  
