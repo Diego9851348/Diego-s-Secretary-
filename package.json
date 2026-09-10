@@ -17,3 +17,6 @@
   "author": "Your Name",  
   "license": "MIT"  
 }  
+"scripts": {  
+    "start": "node index.js"  
+}  
